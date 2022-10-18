@@ -1,9 +1,10 @@
 import profilePicture from './assets/blank-profile-picture-973460.svg'
-import './Contact.css'
+import './Contact.scss'
 import { Link } from 'react-router-dom'
 import { SelectedContact } from './SelectedContact'
 import { useState,useContext } from 'react'
 import { UserContext } from './App'
+import { PinkDiv } from './App';
 
 export const Contacts = ({userList})=>{
     const userData = useContext(UserContext)
@@ -18,7 +19,7 @@ const selectContact = (user)=>{
 {showSelectedContact && console.log(userData.uid.localeCompare( selectedContactData.uid ))}
     return (
         <>
-        {(showSelectedContact === false) && <><p>Messages</p>
+        {(showSelectedContact === false) && <><PinkDiv><p className='messages'>Messages</p></PinkDiv>
        <div>
             {
                 userList.map((user)=>{
@@ -34,7 +35,7 @@ const selectContact = (user)=>{
         <div>
            {showSelectedContact && <SelectedContact selectedContactData={selectedContactData} 
             setShowSelectedContact={setShowSelectedContact} showSelectedContact={showSelectedContact}
-           chatName={userData.uid.localeCompare(selectedContactData.uid) === 1 ? userData.uid : selectedContactData.uid}/>}
+           chatName={(userData.uid.localeCompare(selectedContactData.uid) === 1 )? userData.uid : selectedContactData.uid}/>}
         </div>
         </>
     )

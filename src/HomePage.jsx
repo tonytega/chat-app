@@ -1,3 +1,4 @@
+import './HomePage.scss'
 import { Chat, MessageList, MessageInput } from "@pubnub/react-chat-components";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faMessage,faUser} from '@fortawesome/free-regular-svg-icons'
@@ -7,6 +8,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Groups } from "./Groups";
 import {UserProfile} from './UserProfile'
+import { PinkDiv } from './App';
 
 
 export const HomePage = ({user,userList})=>{
@@ -17,7 +19,7 @@ export const HomePage = ({user,userList})=>{
    const onShowMessage = ()=>{
         setShowMessage(true);
         setShowUsers(false);
-        setShowUsers(false);
+        setShowUserProfile(false);
    }
    const onShowUsers = ()=>{
         setShowMessage(false);
@@ -31,14 +33,14 @@ export const HomePage = ({user,userList})=>{
         setShowUserProfile(true);
    }
     return(
-    <div> 
+    <div className='homepage'> 
         {showMessage && <Contacts userList={userList}/>}
         {showUsers && <Groups/>}
         {showUserProfile && <UserProfile/>}
-    <div>
-         <FontAwesomeIcon icon={faMessage} onClick={onShowMessage}/>
-         <FontAwesomeIcon icon={faUsers} onClick={onShowUsers}/>
-         <FontAwesomeIcon icon={faUser} onClick={onShowUserProfile} />
+    <div className="footer">
+         <FontAwesomeIcon className='footer_icons' icon={faMessage} color={showMessage ? '#ff2a6b': 'black'} size={'2x'} onClick={onShowMessage}/>
+         <FontAwesomeIcon className='footer_icons' icon={faUsers} color={showUsers ? '#ff2a6b': 'black'} size={'2x'}  onClick={onShowUsers}/>
+         <FontAwesomeIcon className='footer_icons' icon={faUser} color={showUserProfile ? '#ff2a6b': 'black'} size={'2x'} onClick={onShowUserProfile} />
     </div>
         
     </div> )

@@ -1,0 +1,12 @@
+@use '../App.scss' as app;
+
+.Sign-in-form,.log-in-form{
+    @include app.form_mixin;
+    
+}
+
+// .form-control{
+//     width: 100%;
+//     padding-top: 10px;
+//     padding-bottom: 10px;
+// }

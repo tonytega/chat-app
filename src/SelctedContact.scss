@@ -1,0 +1,27 @@
+.selected_contact{
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    z-index: 10;
+
+    .chat_header{
+        position: relative;
+        display: flex;
+        gap:20px;
+        align-items: center;
+        height: fit-content;
+        z-index: 10;
+
+        .chat_username{
+            font-size: 1rem;
+
+        }
+    }
+}
+
+// .message_input{
+//     position: absolute;
+//     bottom: 500px;
+// }

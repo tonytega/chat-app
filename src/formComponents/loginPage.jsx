@@ -1,15 +1,14 @@
+import './loginPage.scss'
+import {sizing} from '@mui/system'
 
 import FormControl  from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Input from "@mui/material/Input";
 import Button from "@mui/material/Button";
-import FormHelperText from "@mui/material/FormHelperText";
-import { createTheme,ThemeProvider} from '@mui/material/styles';
-import {ThemeContext} from '../context/themeContext'
 import { Link } from "react-router-dom";
 import { useState,useEffect } from "react";
-import { createUserWithEmailAndPassword,updateProfile,signInWithEmailAndPassword } from 'firebase/auth';
-import { database,auth } from '../firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebase';
 
 
 
@@ -70,24 +69,27 @@ export const LoginPage = ({setUser,setUsercreated})=>{
 
  return(
     <>
-    <form className='Sign-in-form'>
-    <div className='form-control'>
-            <FormControl >
+        <h1 className='form_header'>Talk</h1>
+    <form className='log-in-form'>
+        <div className='form-control'>
+            <FormControl sx={{width: '70%'}}>
                 <InputLabel htmlFor="email" required>email</InputLabel>
-                <Input id="email" type="email" color="custom" onChange={(event)=>handleInputChange(event)} inputProps={{maxLength: 20}} />
+                <Input id="email" type="email" color="custom" onChange={(event)=>handleInputChange(event)} 
+                inputProps={{maxLength: 20}} fullWidth={true} sx={{width: '100%'}}/>
             </FormControl>
             </div>
             <div className='form-control'>
-            <FormControl >
+            <FormControl sx={{width: '70%'}}>
                 <InputLabel htmlFor="password" required>Password</InputLabel>
-                <Input id="password" type='password'  onChange={(event)=>handleInputChange(event)} inputProps={{maxLength: 50}}/>
+                <Input id="password" type='password'  onChange={(event)=>handleInputChange(event)} 
+                        sx={{width: '100%'}}    inputProps={{maxLength: 50}}/>
             </FormControl>
             </div>
-            <div>
-            <Button variant='contained' onClick={()=>handleSubmit()} disabled = {buttonDisabled}>Primary</Button>
+            <div className='login_button'>
+            <Button variant='contained' onClick={()=>handleSubmit()} disabled = {buttonDisabled}>Submit</Button>
             </div>
     </form>
-    <p>Do not have an account? <Link to='/'>sign in</Link></p>
+    <p className='switch'>Do not have an account? <Link to='/'>sign in</Link></p>
     </>
  )
 }

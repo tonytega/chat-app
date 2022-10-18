@@ -1,16 +1,14 @@
-import './SignInPage.css'
+import './SignInPage.scss'
 import FormControl  from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Input from "@mui/material/Input";
-import FormHelperText from "@mui/material/FormHelperText";
-
+import {sizing} from '@mui/system'
 import  Button  from "@mui/material/Button";
 import { useState } from 'react';
 import { database,auth } from '../firebase';
 import { ref,push,child,update, set} from 'firebase/database'
 import { createUserWithEmailAndPassword,updateProfile } from 'firebase/auth';
 import { useEffect } from 'react';
-import {genSaltSync,hashSync} from 'bcryptjs'
 import {Link} from 'react-router-dom'
 
 
@@ -92,38 +90,41 @@ const handleInputChange = (e)=>{
  }
     return(
     <>
-        <h1 color='primary'>Talk</h1>
+        <h1 className='form_header'>Talk</h1>
         <form className='Sign-in-form'>
                 <div className='form-control'>
-                <FormControl >
-                    <InputLabel htmlFor="email" required>Email address</InputLabel>
-                    <Input id="email" aria-describedby="my-helper-text"  onChange={(event)=>handleInputChange(event)}
+                <FormControl  sx={{width: '70%'}}>
+                    <InputLabel htmlFor="email"  required>Email address</InputLabel>
+                    <Input id="email"  size='medium' fullWidth={true} onChange={(event)=>handleInputChange(event)}
+                    inputProps={{maxLength: 50}} sx={{width: '100%'}}/>
+                </FormControl>
+                </div>
+                <div className='form-control'>
+                <FormControl sx={{width: '70%'}}>
+                    <InputLabel htmlFor="username" required>username</InputLabel>
+                    <Input id="username" onChange={(event)=>handleInputChange(event)} inputProps={{maxLength: 20}}
+                            sx={{width: '100%'}}/>
+                </FormControl>
+                </div>
+                <div className='form-control'>
+                <FormControl sx={{width: '70%'}}>
+                    <InputLabel htmlFor="password" required>Password</InputLabel>
+                    <Input id="password" type='password'  onChange={(event)=>handleInputChange(event)} sx={{width: '100%'}}
                     inputProps={{maxLength: 50}}/>
                 </FormControl>
                 </div>
                 <div className='form-control'>
-                <FormControl >
-                    <InputLabel htmlFor="username" required>username</InputLabel>
-                    <Input id="username" onChange={(event)=>handleInputChange(event)} inputProps={{maxLength: 20}}/>
-                </FormControl>
-                </div>
-                <div className='form-control'>
-                <FormControl >
-                    <InputLabel htmlFor="password" required>Password</InputLabel>
-                    <Input id="password" type='password'  onChange={(event)=>handleInputChange(event)} inputProps={{maxLength: 50}}/>
-                </FormControl>
-                </div>
-                <div className='form-control'>
-                <FormControl >
+                <FormControl sx={{width: '70%'}} >
                     <InputLabel htmlFor="confirm-password" required>Confirm Password</InputLabel>
-                    <Input id="confirm-password" type='password' onChange={(event)=>handleConfirmPassWord(event,passWord)}inputProps={{maxLength: 50}}/>
+                    <Input id="confirm-password" type='password' onChange={(event)=>handleConfirmPassWord(event,passWord)}
+                            sx={{width: '100%'}}    inputProps={{maxLength: 50}}/>
                 </FormControl>
                 </div>
                 <div className='form-control'>
-                {isLoadingSignIn? <p color='custom'>Loading</p> : <Button variant='contained' onClick={()=>handleSubmit()} disabled = {buttonDisabled}>Primary</Button>}
+                {isLoadingSignIn? <p color='custom'>Loading</p> : <Button variant='contained' onClick={()=>handleSubmit()} disabled = {buttonDisabled}>Sign Up</Button>}
                 </div>
         </form> 
-        <p>already have an account? <Link to='/login'>log in</Link></p>
+        <p className='switch'>already have an account? <Link to='/login'>log in</Link></p>
 
        
     </>
